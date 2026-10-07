@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jamea Noreen S. Benticai | Programmer & Front-End Developer</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            cambria: ['Cambria', 'Georgia', 'serif'],
+          },
+          colors: {
+            purpleTheme: {
+              50: '#f5f3ff',
+              100: '#ede9fe',
+              200: '#ddd6fe',
+              300: '#c4b5fd',
+              400: '#a78bfa',
+              500: '#8b5cf6',
+              600: '#7c3aed',
+              700: '#6d28d9',
+              800: '#5b21b6',
+              900: '#4c1d95',
+              950: '#2e1065',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --font-main: 'Cambria', Georgia, serif;
+      --primary: #6d28d9;
+      --primary-dark: #4c1d95;
+      --accent: #a78bfa;
+      --dark-purple: #2e1065;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: #120726;
+      color: #f5f3ff;
+      scroll-behavior: smooth;
+    }
+
+    /* Ambient Gradient Background */
+    .bg-gradient-purple-theme {
+      background: 
+        radial-gradient(circle at 15% 15%, rgba(124, 58, 237, 0.28) 0%, transparent 45%),
+        radial-gradient(circle at 85% 80%, rgba(167, 139, 250, 0.18) 0%, transparent 45%),
+        linear-gradient(135deg, #120726 0%, #1e0a3c 40%, #2e1065 100%);
+      background-attachment: fixed;
+    }
+
+    /* Glassmorphism Surface Container */
+    .glass-panel {
+      background: rgba(30, 10, 60, 0.65);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(167, 139, 250, 0.2);
+      box-shadow: 0 12px 35px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    .glass-panel-hover {
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .glass-panel-hover:hover {
+      transform: translateY(-6px);
+      border-color: rgba(167, 139, 250, 0.5);
+      box-shadow: 0 20px 40px -10px rgba(109, 40, 217, 0.4);
+    }
+
+    /* Active nav item highlight */
+    .nav-link.active {
+      color: #a78bfa;
+      background-color: rgba(109, 40, 217, 0.25);
+      border-bottom: 2px solid #a78bfa;
+    }
+
+    /* Scroll animations */
+    .fade-in-scroll {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-in-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Text Glow Effect */
+    .text-glow {
+      text-shadow: 0 0 20px rgba(167, 139, 250, 0.6);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #120726;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #5b21b6;
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #7c3aed;
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-purple-theme min-h-screen text-slate-100 selection:bg-purpleTheme-600 selection:text-white">
+
+  <!-- 1. NAVIGATION BAR -->
+  <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300" id="navbar">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20 glass-panel rounded-b-2xl px-6 mt-0 sm:mt-2">
+        
+        <!-- Brand Logo -->
+        <a href="#home" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purpleTheme-700 to-purpleTheme-400 flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:scale-105 transition-transform">
+            J
+          </div>
+          <span class="font-bold text-lg sm:text-xl tracking-tight text-purpleTheme-100 group-hover:text-purpleTheme-300 transition-colors">
+            Jamea<span class="text-purpleTheme-400">.dev</span>
+          </span>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex space-x-1 lg:space-x-2">
+          <a href="#home" class="nav-link px-4 py-2 rounded-lg text-sm font-semibold text-slate-200 hover:text-white hover:bg-purpleTheme-800/40 transition-all">Home</a>
+          <a href="#about" class="nav-link px-4 py-2 rounded-lg text-sm font-semibold text-slate-200 hover:text-white hover:bg-purpleTheme-800/40 transition-all">About Me</a>
+          <a href="#projects" class="nav-link px-4 py-2 rounded-lg text-sm font-semibold text-slate-200 hover:text-white hover:bg-purpleTheme-800/40 transition-all">Projects</a>
+          <a href="#education" class="nav-link px-4 py-2 rounded-lg text-sm font-semibold text-slate-200 hover:text-white hover:bg-purpleTheme-800/40 transition-all">Education</a>
+          <a href="#description" class="nav-link px-4 py-2 rounded-lg text-sm font-semibold text-slate-200 hover:text-white hover:bg-purpleTheme-800/40 transition-all">Description</a>
+        </nav>
+
+        <!-- Mobile Menu Toggle Button -->
+        <div class="md:hidden">
+          <button id="mobile-menu-btn" type="button" class="text-purpleTheme-300 hover:text-white p-2 rounded-lg focus:outline-none" aria-label="Toggle Navigation">
+            <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Dropdown -->
+    <div id="mobile-menu" class="hidden md:hidden glass-panel mx-4 mt-2 rounded-2xl overflow-hidden border border-purpleTheme-500/20 shadow-2xl">
+      <div class="px-4 pt-3 pb-4 space-y-2 flex flex-col">
+        <a href="#home" class="mobile-nav-link px-4 py-3 rounded-xl text-base font-medium text-slate-200 hover:bg-purpleTheme-800/50 hover:text-purpleTheme-300">Home</a>
+        <a href="#about" class="mobile-nav-link px-4 py-3 rounded-xl text-base font-medium text-slate-200 hover:bg-purpleTheme-800/50 hover:text-purpleTheme-300">About Me</a>
+        <a href="#projects" class="mobile-nav-link px-4 py-3 rounded-xl text-base font-medium text-slate-200 hover:bg-purpleTheme-800/50 hover:text-purpleTheme-300">Projects</a>
+        <a href="#education" class="mobile-nav-link px-4 py-3 rounded-xl text-base font-medium text-slate-200 hover:bg-purpleTheme-800/50 hover:text-purpleTheme-300">Education</a>
+        <a href="#description" class="mobile-nav-link px-4 py-3 rounded-xl text-base font-medium text-slate-200 hover:bg-purpleTheme-800/50 hover:text-purpleTheme-300">Description</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-24 sm:pt-28">
+
+    <!-- 2. HOME SECTION (HERO) -->
+    <section id="home" class="min-h-[85vh] flex items-center justify-center relative px-4 sm:px-6 lg:px-8 py-12">
+      <div class="max-w-4xl mx-auto text-center z-10 fade-in-scroll">
+        
+        <!-- Status Tag -->
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border border-purpleTheme-400/30 text-purpleTheme-300 text-sm font-semibold mb-6 shadow-md">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          Available for Front-End Roles & Collaborations
+        </div>
+
+        <!-- Full Name Banner -->
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-4 text-glow">
+          Jamea Noreen S. Bentican
+        </h1>
+
+        <!-- Subtitle & Role -->
+        <p class="text-xl sm:text-3xl font-semibold text-purpleTheme-300 mb-6 tracking-wide">
+          Programmer <span class="text-purpleTheme-500">|</span> Front-End Developer
+        </p>
+
+        <!-- Brief Intro Tagline -->
+        <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed font-normal">
+          Crafting responsive, visually engaging, and accessible web applications using modern front-end engineering techniques.
+        </p>
+
+        <!-- Quick Action Buttons -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="#about" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-purpleTheme-600 to-purpleTheme-800 hover:from-purpleTheme-500 hover:to-purpleTheme-700 text-white font-bold shadow-lg shadow-purpleTheme-900/50 hover:shadow-purpleTheme-700/60 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2">
+            <i class="fa-solid fa-user"></i> About Me
+          </a>
+          <a href="#projects" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-panel hover:bg-purpleTheme-900/40 text-purpleTheme-200 font-bold border border-purpleTheme-500/30 hover:border-purpleTheme-400 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2">
+            <i class="fa-solid fa-laptop-code"></i> View Projects
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. ABOUT ME SECTION -->
+    <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="text-center mb-16 fade-in-scroll">
+        <h2 class="text-3xl sm:text-4xl font-bold text-white mb-2">About Me</h2>
+        <div class="w-20 h-1.5 bg-gradient-to-r from-purpleTheme-500 to-purpleTheme-300 mx-auto rounded-full"></div>
+        <p class="text-slate-400 mt-4 max-w-xl mx-auto">Personal information, developer overview, and core competencies.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Bio Card -->
+        <div class="lg:col-span-7 glass-panel p-8 rounded-3xl glass-panel-hover fade-in-scroll">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-14 h-14 rounded-2xl bg-purpleTheme-900/60 border border-purpleTheme-500/30 flex items-center justify-center text-purpleTheme-300 text-2xl">
+              <i class="fa-solid fa-code"></i>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold text-white">Developer Profile</h3>
+              <p class="text-purpleTheme-300 text-sm">Passionate Front-End Specialist</p>
+            </div>
+          </div>
+
+          <p class="text-slate-300 leading-relaxed mb-6 font-normal">
+            I am Jamea Noreen S. Bentican, an ambitious programmer who loves building dynamic web interfaces that blend visual aesthetics with optimized user experience.
+          </p>
+          <p class="text-slate-300 leading-relaxed mb-8 font-normal">
+            My focus centers on developing modern layout systems, implementing interactive UI components, and writing clean, maintainable front-end code.
+          </p>
+
+          <!-- Interactive Skill Tags -->
+          <div>
+            <h4 class="text-sm font-semibold uppercase tracking-wider text-purpleTheme-300 mb-4 flex items-center gap-2">
+              <i class="fa-solid fa-layer-group"></i> Technical Core
+            </h4>
+            <div class="flex flex-wrap gap-2.5">
+              <span class="px-3.5 py-1.5 rounded-xl bg-purpleTheme-900/50 border border-purpleTheme-500/30 text-purpleTheme-200 text-sm font-semibold hover:border-purpleTheme-400 transition-colors">HTML5</span>
+              <span class="px-3.5 py-1.5 rounded-xl bg-purpleTheme-900/50 border border-purpleTheme-500/30 text-purpleTheme-200 text-sm font-semibold hover:border-purpleTheme-400 transition-colors">CSS3 / Tailwind</span>
+              <span class="px-3.5 py-1.5 rounded-xl bg-purpleTheme-900/50 border border-purpleTheme-500/30 text-purpleTheme-200 text-sm font-semibold hover:border-purpleTheme-400 transition-colors">JavaScript (ES6+)</span>
+              <span class="px-3.5 py-1.5 rounded-xl bg-purpleTheme-900/50 border border-purpleTheme-500/30 text-purpleTheme-200 text-sm font-semibold hover:border-purpleTheme-400 transition-colors">Responsive Web Design</span>
+              <span class="px-3.5 py-1.5 rounded-xl bg-purpleTheme-900/50 border border-purpleTheme-500/30 text-purpleTheme-200 text-sm font-semibold hover:border-purpleTheme-400 transition-colors">UI/UX Layouts</span>
+              <span class="px-3.5 py-1.5 rounded-xl bg-purpleTheme-900/50 border border-purpleTheme-500/30 text-purpleTheme-200 text-sm font-semibold hover:border-purpleTheme-400 transition-colors">Git & GitHub</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Personal Info Card -->
+        <div class="lg:col-span-5 glass-panel p-8 rounded-3xl glass-panel-hover fade-in-scroll">
+          <h3 class="text-xl font-bold text-white mb-6 pb-3 border-b border-purpleTheme-800/40 flex items-center justify-between">
+            <span>Personal Information</span>
+            <i class="fa-solid fa-address-card text-purpleTheme-400"></i>
+          </h3>
+
+          <div class="space-y-6">
+            <!-- Info Item 1: Name -->
+            <div class="flex items-start gap-4 p-3.5 rounded-2xl bg-purpleTheme-950/40 border border-purpleTheme-500/20">
+              <div class="w-10 h-10 rounded-xl bg-purpleTheme-800/50 flex items-center justify-center text-purpleTheme-300 flex-shrink-0 mt-0.5">
+                <i class="fa-solid fa-user"></i>
+              </div>
+              <div>
+                <span class="text-xs uppercase text-purpleTheme-400 font-bold tracking-wider block">Name</span>
+                <span class="text-base font-bold text-white">Jamea Noreen S. Bentican</span>
+              </div>
+            </div>
+
+            <!-- Info Item 2: Age -->
+            <div class="flex items-start gap-4 p-3.5 rounded-2xl bg-purpleTheme-950/40 border border-purpleTheme-500/20">
+              <div class="w-10 h-10 rounded-xl bg-purpleTheme-800/50 flex items-center justify-center text-purpleTheme-300 flex-shrink-0 mt-0.5">
+                <i class="fa-solid fa-cake-candles"></i>
+              </div>
+              <div>
+                <span class="text-xs uppercase text-purpleTheme-400 font-bold tracking-wider block">Age</span>
+                <span class="text-base font-bold text-white">20</span>
+              </div>
+            </div>
+
+            <!-- Info Item 3: Address -->
+            <div class="flex items-start gap-4 p-3.5 rounded-2xl bg-purpleTheme-950/40 border border-purpleTheme-500/20">
+              <div class="w-10 h-10 rounded-xl bg-purpleTheme-800/50 flex items-center justify-center text-purpleTheme-300 flex-shrink-0 mt-0.5">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div>
+                <span class="text-xs uppercase text-purpleTheme-400 font-bold tracking-wider block">Address</span>
+                <span class="text-base font-bold text-white">Aurora, Quezon, Nueva Vizcaya</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. PROJECTS SECTION -->
+    <section id="projects" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="text-center mb-12 fade-in-scroll">
+        <h2 class="text-3xl sm:text-4xl font-bold text-white mb-2">Projects</h2>
+        <div class="w-20 h-1.5 bg-gradient-to-r from-purpleTheme-500 to-purpleTheme-300 mx-auto rounded-full"></div>
+        <p class="text-slate-400 mt-4 max-w-xl mx-auto">Selected web projects showcasing front-end design and interactive logic.</p>
+      </div>
+
+      <!-- Filter Controls -->
+      <div class="flex justify-center gap-2 mb-10 flex-wrap fade-in-scroll">
+        <button class="project-filter active px-5 py-2 rounded-full text-sm font-semibold glass-panel border border-purpleTheme-500/40 text-purpleTheme-200 hover:bg-purpleTheme-800/50 transition-all" data-filter="all">
+          All Projects
+        </button>
+        <button class="project-filter px-5 py-2 rounded-full text-sm font-semibold glass-panel border border-purpleTheme-500/20 text-slate-300 hover:text-white hover:bg-purpleTheme-800/50 transition-all" data-filter="frontend">
+          Front-End
+        </button>
+        <button class="project-filter px-5 py-2 rounded-full text-sm font-semibold glass-panel border border-purpleTheme-500/20 text-slate-300 hover:text-white hover:bg-purpleTheme-800/50 transition-all" data-filter="web">
+          Basic Mobile App
+        </button>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Project Card 1 -->
+        <div class="project-card glass-panel rounded-3xl overflow-hidden glass-panel-hover fade-in-scroll flex flex-col" data-category="web">
+          <div class="h-48 bg-gradient-to-br from-purpleTheme-900 via-purpleTheme-800 to-indigo-950 p-6 flex flex-col justify-between relative overflow-hidden group">
+            <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-purpleTheme-500/20 rounded-full blur-xl group-hover:scale-150 transition-transform"></div>
+            <div class="flex justify-between items-center z-10">
+              <span class="px-3 py-1 rounded-full bg-purpleTheme-950/70 border border-purpleTheme-400/30 text-purpleTheme-300 text-xs font-semibold">Basic Mobile App</span>
+              <i class="fa-solid fa-store text-2xl text-purpleTheme-300"></i>
+            </div>
+            <div class="z-10">
+              <h3 class="text-xl font-bold text-white">Mobile Application</h3>
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <p class="text-slate-300 text-sm leading-relaxed mb-4">
+              It is a basic mobile app that uses MIT app inventor to build fully functional mobile apps for Android and iOS devices without writing traditional text-based code.
+            </p>
+            <div>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="text-xs px-2.5 py-1 rounded-lg bg-purpleTheme-950 text-purpleTheme-300 font-medium">HTML5</span>
+                <span class="text-xs px-2.5 py-1 rounded-lg bg-purpleTheme-950 text-purpleTheme-300 font-medium">Tailwind CSS</span>
+                <span class="text-xs px-2.5 py-1 rounded-lg bg-purpleTheme-950 text-purpleTheme-300 font-medium">JavaScript</span>
+              </div>
+              <div class="flex items-center gap-3 pt-4 border-t border-purpleTheme-800/30">
+                <button onclick="openProjectModal('Basic Mobile App', 'we build a mobile converter for temperature, that converts the celsius into farenheit and kelvin.')"class="flex-1 py-2 rounded-xl bg-purpleTheme-700 hover:bg-purpleTheme-600 text-white text-xs font-bold transition-colors text-center>
+                  <i class="fa-solid fa-eye mr-1"></i> Preview Details
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Card 2 -->
+        <div class="project-card glass-panel rounded-3xl overflow-hidden glass-panel-hover fade-in-scroll flex flex-col" data-category="frontend">
+          <div class="h-48 bg-gradient-to-br from-purpleTheme-950 via-purpleTheme-900 to-purpleTheme-800 p-6 flex flex-col justify-between relative overflow-hidden group">
+            <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-purpleTheme-400/20 rounded-full blur-xl group-hover:scale-150 transition-transform"></div>
+            <div class="flex justify-between items-center z-10">
+              <span class="px-3 py-1 rounded-full bg-purpleTheme-950/70 border border-purpleTheme-400/30 text-purpleTheme-300 text-xs font-semibold">Web Application</span>
+              <i class="fa-solid fa-list-check text-2xl text-purpleTheme-300"></i>
+            </div>
+            <div class="z-10">
+              <h3 class="text-xl font-bold text-white">Web Page Designer</h3>
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <p class="text-slate-300 text-sm leading-relaxed mb-4">
+              Productivity Web Page designed for the College of Information technology Education. 
+            </p>
+            <div>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="text-xs px-2.5 py-1 rounded-lg bg-purpleTheme-950 text-purpleTheme-300 font-medium">JavaScript</span>
+                <span class="text-xs px-2.5 py-1 rounded-lg bg-purpleTheme-950 text-purpleTheme-300 font-medium">CSS3 Grid</span>
+                <span class="text-xs px-2.5 py-1 rounded-lg bg-purpleTheme-950 text-purpleTheme-300 font-medium">LocalStorage</span>
+              </div>
+              <div class="flex items-center gap-3 pt-4 border-t border-purpleTheme-800/30">
+                <button onclick="openProjectModal('All About CITE', 'This project contains the History(Vision, Mission and VMGO), Programs ( BS Information Technology, BS Computer Science, BS Information System) and Updated News of the College of Information Technology Education')" class="flex-1 py-2 rounded-xl bg-purpleTheme-700 hover:bg-purpleTheme-600 text-white text-xs font-bold transition-colors text-center">
+                  <i class="fa-solid fa-eye mr-1"></i> Preview Details
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Card 3 -->
+        <div class="project-card glass-panel rounded-3xl overflow-hidden glass-panel-hover fade-in-scroll flex flex-col" data-category="frontend">
+          <div class="h-48 bg-gradient-to-br from-indigo-950 via-purpleTheme-900 to-purpleTheme-800 p-6 flex flex-col justify-between relative overflow-hidden group">
+            <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-purpleTheme-500/20 rounded-full blur-xl group-hover:scale-150 transition-transform"></div>
+            <div class="flex justify-between items-center z-10">
+              <span class="px-3 py-1 rounded-full bg-purpleTheme-950/70 border border-purpleTheme-400/30 text-purpleTheme-300 text-xs font-semibold">Front-End</span>
+              <i class="fa-solid fa-sun text-2xl text-purpleTheme-300"></i>
+            </div>
+            <div class="z-10">
+              <h3 class="text-xl font-bold text-white">Wep Page Designer</h3>
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <p class="text-slate-300 text-sm leading-relaxed mb-4">
+              My Firt ever Wep Page Design, a final project for our subject during First Semester of Academic Year 2025-2026
+            </p>
+            <div>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="text-xs px-2.5 py-1 rounded-lg bg-purpleTheme-950 text-purpleTheme-300 font-medium">JavaScript</span>
+                <span class="text-xs px-2.5 py-1 rounded-lg bg-purpleTheme-950 text-purpleTheme-300 font-medium">REST API</span>
+                <span class="text-xs px-2.5 py-1 rounded-lg bg-purpleTheme-950 text-purpleTheme-300 font-medium">Tailwind CSS</span>
+              </div>
+              <div class="flex items-center gap-3 pt-4 border-t border-purpleTheme-800/30">
+                <button onclick="openProjectModal('My Wep Page', 'My Wep Page is consist of deatails about me like my favorite color, movies, foods, and my hobbies')" class="flex-1 py-2 rounded-xl bg-purpleTheme-700 hover:bg-purpleTheme-600 text-white text-xs font-bold transition-colors text-center">
+                  <i class="fa-solid fa-eye mr-1"></i> Preview Details
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5. EDUCATION SECTION -->
+    <section id="education" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="text-center mb-16 fade-in-scroll">
+        <h2 class="text-3xl sm:text-4xl font-bold text-white mb-2">Education</h2>
+        <div class="w-20 h-1.5 bg-gradient-to-r from-purpleTheme-500 to-purpleTheme-300 mx-auto rounded-full"></div>
+        <p class="text-slate-400 mt-4 max-w-xl mx-auto">Academic background and degree credentials.</p>
+      </div>
+
+      <div class="max-w-3xl mx-auto">
+        <div class="glass-panel p-8 sm:p-10 rounded-3xl glass-panel-hover relative border-l-4 border-l-purpleTheme-500 fade-in-scroll">
+          
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-6 border-b border-purpleTheme-800/40">
+            <div>
+              <span class="px-3.5 py-1 rounded-full bg-purpleTheme-900/60 border border-purpleTheme-500/30 text-purpleTheme-300 text-xs font-semibold inline-block mb-2">College Education</span>
+              <h3 class="text-2xl font-bold text-white">Nueva Vizcaya State University</h3>
+            </div>
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-purpleTheme-950/80 border border-purpleTheme-500/30 text-purpleTheme-300 text-sm font-semibold w-fit">
+              <i class="fa-solid fa-calendar-days text-purpleTheme-400"></i>
+              2023 - 2024
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <div class="flex items-center gap-3 text-lg sm:text-xl font-bold text-purpleTheme-200">
+              <i class="fa-solid fa-graduation-cap text-purpleTheme-400 text-2xl"></i>
+              Bachelor of Science in Information Technology
+            </div>
+            
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+              Focused on core information technology fundamentals, front-end software development, web systems, database design, and software engineering logic.
+            </p>
+
+            <div class="pt-4 flex flex-wrap gap-2">
+              <span class="text-xs px-3 py-1.5 rounded-lg bg-purpleTheme-900/40 text-purpleTheme-300 border border-purpleTheme-800/40 font-medium">Web Systems & Technologies</span>
+              <span class="text-xs px-3 py-1.5 rounded-lg bg-purpleTheme-900/40 text-purpleTheme-300 border border-purpleTheme-800/40 font-medium">Application Development</span>
+              <span class="text-xs px-3 py-1.5 rounded-lg bg-purpleTheme-900/40 text-purpleTheme-300 border border-purpleTheme-800/40 font-medium">Database Management</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. DESCRIPTION SECTION -->
+    <section id="description" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="text-center mb-16 fade-in-scroll">
+        <h2 class="text-3xl sm:text-4xl font-bold text-white mb-2">Description</h2>
+        <div class="w-20 h-1.5 bg-gradient-to-r from-purpleTheme-500 to-purpleTheme-300 mx-auto rounded-full"></div>
+        <p class="text-slate-400 mt-4 max-w-xl mx-auto">Personal statement and editable workspace for future updates.</p>
+      </div>
+
+      <div class="max-w-3xl mx-auto fade-in-scroll">
+        <div class="glass-panel p-6 sm:p-10 rounded-3xl border border-purpleTheme-500/30 relative">
+          
+          <div class="flex items-center justify-between mb-6 pb-4 border-b border-purpleTheme-800/40">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-purpleTheme-800/50 flex items-center justify-center text-purpleTheme-300">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-white">Custom Description Editor</h3>
+                <p class="text-xs text-purpleTheme-300">Edit or copy your personal statement</p>
+              </div>
+            </div>
+
+            <!-- Copy Button -->
+            <button id="copy-btn" onclick="copyDescription()" class="px-4 py-2 rounded-xl bg-purpleTheme-700 hover:bg-purpleTheme-600 text-white text-xs font-bold transition-all flex items-center gap-2 shadow-md">
+              <i class="fa-regular fa-copy" id="copy-icon"></i> <span id="copy-text">Copy Text</span>
+            </button>
+          </div>
+
+          <!-- Editable Area -->
+          <div class="relative">
+            <textarea id="description-textarea" rows="6" class="w-full bg-purpleTheme-950/60 border border-purpleTheme-500/30 rounded-2xl p-4 text-slate-200 text-sm sm:text-base leading-relaxed focus:outline-none focus:border-purpleTheme-400 font-cambria" placeholder="Click here to type or paste your custom bio, vision statement, or project goals..."></textarea>
+          </div>
+
+          <div class="mt-4 flex items-center justify-between text-xs text-slate-400">
+            <span><i class="fa-solid fa-circle-info text-purpleTheme-400 mr-1"></i> Feel free to add your own statement above.</span>
+            <span id="char-count">0 characters</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 7. FOOTER -->
+  <footer class="mt-20 border-t border-purpleTheme-800/40 bg-purpleTheme-950/80 backdrop-blur-md py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+      
+      <div>
+        <span class="text-lg font-bold text-white">Jamea Noreen S. Bentican</span>
+        <p class="text-xs text-slate-400 mt-1">&copy; <span id="year"></span> All rights reserved. Programmer & Front-End Developer.</p>
+      </div>
+
+      <div class="flex items-center gap-4 text-slate-400 text-sm">
+        <a href="#home" class="hover:text-purpleTheme-300 transition-colors">Home</a>
+        <span>•</span>
+        <a href="#about" class="hover:text-purpleTheme-300 transition-colors">About</a>
+        <span>•</span>
+        <a href="#projects" class="hover:text-purpleTheme-300 transition-colors">Projects</a>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Floating Back To Top Button -->
+  <button id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-8 right-8 w-12 h-12 rounded-2xl glass-panel bg-purpleTheme-900/80 hover:bg-purpleTheme-700 text-purpleTheme-200 border border-purpleTheme-500/40 flex items-center justify-center shadow-2xl opacity-0 pointer-events-none transition-all z-40" aria-label="Scroll to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- Project Preview Modal Popup -->
+  <div id="project-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="glass-panel max-w-lg w-full p-8 rounded-3xl border border-purpleTheme-500/30 relative">
+      <button onclick="closeProjectModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white text-xl" aria-label="Close modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <h3 id="modal-title" class="text-2xl font-bold text-white mb-4">Project Preview</h3>
+      <p id="modal-desc" class="text-slate-300 text-sm leading-relaxed mb-6">Detailed overview...</p>
+      <button onclick="closeProjectModal()" class="w-full py-3 rounded-xl bg-purpleTheme-700 hover:bg-purpleTheme-600 text-white font-bold text-sm transition-colors">
+        Close Window
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Set Current Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile Navigation Controls
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+
+    mobileBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      if (mobileMenu.classList.contains('hidden')) {
+        menuIcon.className = 'fa-solid fa-bars text-2xl';
+      } else {
+        menuIcon.className = 'fa-solid fa-xmark text-2xl';
+      }
+    });
+
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuIcon.className = 'fa-solid fa-bars text-2xl';
+      });
+    });
+
+    // Scroll Highlight & Back To Top Button
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    window.addEventListener('scroll', () => {
+      let currentSection = '';
+
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 140;
+        const sectionHeight = section.clientHeight;
+        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+          currentSection = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSection}`) {
+          link.classList.add('active');
+        }
+      });
+
+      const backToTopBtn = document.getElementById('back-to-top');
+      if (window.scrollY > 400) {
+        backToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+      } else {
+        backToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+      }
+    });
+
+    // Scroll Fade-in Observer
+    const fadeElements = document.querySelectorAll('.fade-in-scroll');
+    const observerOptions = { threshold: 0.15 };
+
+    const fadeObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    fadeElements.forEach(el => fadeObserver.observe(el));
+
+    // Category Filter Buttons
+    const filterButtons = document.querySelectorAll('.project-filter');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        filterButtons.forEach(btn => {
+          btn.classList.remove('active', 'border-purpleTheme-500/40', 'text-purpleTheme-200');
+          btn.classList.add('border-purpleTheme-500/20', 'text-slate-300');
+        });
+
+        button.classList.add('active', 'border-purpleTheme-500/40', 'text-purpleTheme-200');
+        button.classList.remove('border-purpleTheme-500/20', 'text-slate-300');
+
+        const filterValue = button.getAttribute('data-filter');
+
+        projectCards.forEach(card => {
+          if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Project Detail Modal
+    const modal = document.getElementById('project-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDesc = document.getElementById('modal-desc');
+
+    function openProjectModal(title, description) {
+      modalTitle.textContent = title;
+      modalDesc.textContent = description;
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+    }
+
+    function closeProjectModal() {
+      modal.classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    // Description Editor & Clipboard Functionality
+    const descriptionTextarea = document.getElementById('description-textarea');
+    const charCount = document.getElementById('char-count');
+
+    descriptionTextarea.addEventListener('input', () => {
+      charCount.textContent = `${descriptionTextarea.value.length} characters`;
+    });
+
+    function copyDescription() {
+      const textToCopy = descriptionTextarea.value || descriptionTextarea.placeholder;
+      
+      // Fallback copy implementation
+      const tempTextArea = document.createElement('textarea');
+      tempTextArea.value = textToCopy;
+      document.body.appendChild(tempTextArea);
+      tempTextArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempTextArea);
+
+      const copyBtnText = document.getElementById('copy-text');
+      const copyIcon = document.getElementById('copy-icon');
+
+      copyBtnText.textContent = 'Copied!';
+      copyIcon.className = 'fa-solid fa-check text-emerald-300';
+
+      setTimeout(() => {
+        copyBtnText.textContent = 'Copy Text';
+        copyIcon.className = 'fa-regular fa-copy';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
